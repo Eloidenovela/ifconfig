@@ -19,12 +19,13 @@ namespace ifconfig {
         struct ifaddrs *interfaces = nullptr, *ifa = nullptr;
         char ip[INET_ADDRSTRLEN];
 
-        // get all interfaces
+        // Get all interfaces on machine
         if (getifaddrs(&interfaces) == -1) {
-            std::cerr << "Erro ao obter as interfaces de rede" << std::endl;
+            std::cerr << "Error to open networks interfaces" << std::endl;
             return {};
         }
 
+        // go througth all interfaces
         for (ifa = interfaces; ifa != nullptr; ifa = ifa->ifa_next) {
             
             if (!(ifa->ifa_addr)) 
